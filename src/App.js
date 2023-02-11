@@ -18,6 +18,7 @@ class App extends Component {
     }
   }
 
+  // Call the api
   fetchData() {
     fetch('https://randomuser.me/api/?results=20')
       .then(response => response.json())
@@ -54,6 +55,7 @@ class App extends Component {
           <Search />
         </section> 
         <section style={styles.section}>
+          {/* Map the data that was returned from the API */}
           {!isLoaded && userData.length > 0 ? userData.map(user => {
             const { userName, firstName, lastName, street, streetName, city, state, zipCode, email, phone, picture } = user;
             return <UserData
