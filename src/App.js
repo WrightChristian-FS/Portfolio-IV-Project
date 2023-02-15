@@ -18,6 +18,10 @@ class App extends Component {
     }
   }
 
+  //  handleSubmit = (e) => { 
+  //   e.preventDefault(); 
+  // }
+
   // Call the api
   fetchData() {
     fetch('https://randomuser.me/api/?results=20')
