@@ -1,15 +1,19 @@
 import React from 'react';
 import Button from './Button'
 
-const Search = () => {
+const Search = props => {
     return (
         <div className='search' style={styles.container}>
+
             <p>Contact Search</p>
 
-            <section style={styles.section}>
-                <input placeholder='John Doe' style={styles.input}></input>
+            <form
+                style={styles.section}
+                onSubmit={props.buttonClicked}>
+
+                <input placeholder='John Doe' value={props.employeeName} onChange={props.getInput} style={styles.input} ></input>
                 <Button buttonTitle="Search" buttonStyle={styles.button} />
-            </section>
+            </form>
 
         </div>
     )
@@ -27,13 +31,13 @@ const styles = {
         textTransform: 'uppercase',
         color: '#85BAA1',
     },
-    section: { 
-        display: 'flex', 
+    section: {
+        display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center', 
-        padding: '0rem', 
+        alignItems: 'center',
+        padding: '0rem',
         margin: '0rem'
-    }, 
+    },
     input: {
         height: '2rem',
         width: '40%',
@@ -44,10 +48,10 @@ const styles = {
     button: {
         alignSelf: 'center',
         padding: '.5rem',
-        marginLeft: '1rem', 
-        borderRadius: '10px', 
-        backgroundColor: '#85BAA1', 
-        border: 'none', 
+        marginLeft: '1rem',
+        borderRadius: '10px',
+        backgroundColor: '#85BAA1',
+        border: 'none',
         // color: 'white'
     }
 }

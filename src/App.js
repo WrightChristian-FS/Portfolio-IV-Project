@@ -18,11 +18,7 @@ class App extends Component {
     }
   }
 
-  //  handleSubmit = (e) => { 
-  //   e.preventDefault(); 
-  // }
-
-  // Call the api
+ // Call the api
   fetchData() {
     fetch('https://randomuser.me/api/?results=20')
       .then(response => response.json())
@@ -43,22 +39,49 @@ class App extends Component {
       )))
       .then(userData => this.setState({
         userData,
-        isLoaded: false
+        isLoaded: false 
       }))
       .catch(err => console.log(err))
   }
 
+  getInput = e => { 
+    e.preventDefault(); 
+    console.log("TEST")
+  }
+
+  testFunct = e => { 
+    console.log("TEST")
+  }
+
   render() {
-    const { isLoaded, userData } = this.state
+    const { isLoaded, userData } = this.state; 
+
+    let info = this.state.userData.map(user => {
+      const { userName, firstName, lastName, street, streetName, city, state, zipCode, email, phone, picture } = user;
+      return <UserData
+        key={userName}
+        picture={picture}
+        firstName={firstName}
+        lastName={lastName}
+        email={email}
+        street={street}
+        streetName={streetName}
+        city={city}
+        state={state}
+        zipCode={zipCode}
+        phone={phone}
+      />
+    }) 
+    
     return (
       <div style={styles.container}>
         <section>
-          <Navigation />
+          <Navigation/>
         </section>
         <section>
-          <Search />
+          <Search getInput={this.getInput}/>
         </section> 
-        <section style={styles.section}>
+        <section style={styles.section} >
           {/* Map the data that was returned from the API */}
           {!isLoaded && userData.length > 0 ? userData.map(user => {
             const { userName, firstName, lastName, street, streetName, city, state, zipCode, email, phone, picture } = user;
