@@ -13,7 +13,7 @@ const Search = props => {
               
                 {/* Input to get the country code requested by the user. This is explicitly limited to 2 characters  */}
                 <input placeholder='US' value={props.employeeName} style={styles.input} maxLength='2' ></input>
-                <Button buttonTitle="Search" buttonStyle={styles.button} onSubmit={props.Test}/>
+                <Button buttonTitle="Search" buttonStyle={styles.button} />
             </form>
         </div>
     )
