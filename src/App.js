@@ -9,6 +9,7 @@ class App extends Component {
     isLoaded: true
   }
 
+
   componentDidMount() {
     const profile = this.state.isLoaded
     if (profile) {
@@ -17,9 +18,10 @@ class App extends Component {
     } else {
       console.log("Did not load User data")
     }
-    console.log("this.componentDidMount") 
-
+    // console.log("this.componentDidMount") 
   }
+
+
 
   // Call the api
   fetchData() {
