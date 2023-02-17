@@ -1,17 +1,19 @@
 import {Routes, Route} from 'react-router-dom'; 
+import Nav from './components/NavigationBar'; 
+import Search from './components/Search';
+
 
 function App() { 
   return(
     <div style={styles.container}>
-      
-    {/* The web app header  */}
-
-
-    {/* The search section  */}
-
-
-    {/* The Results section  */}
-
+      <main>
+        <Nav></Nav>
+        <section>
+          <Routes>
+            <Route path='/' element={<Search/>}/>
+          </Routes>
+        </section>
+      </main>
     </div>
   )
 }

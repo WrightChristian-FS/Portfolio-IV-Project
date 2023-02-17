@@ -30,7 +30,7 @@ const styles = {
         textAlign: 'center',
         fontSize: '2rem',
         textTransform: 'uppercase',
-        color: '#85BAA1',
+        color: 'white',
         // display: 'flex', 
         // flexDirection: 'colummn'
     },
