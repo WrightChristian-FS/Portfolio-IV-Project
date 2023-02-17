@@ -4,17 +4,22 @@ import Button from './Button'
 const Search = props => {
     return (
         <div className='search' style={styles.container}>
-
-            <p>Contact Search</p>
+{/* 
+            <p>Contact Search</p> */}
 
             <form
-                style={styles.section}
-                onSubmit={props.buttonClicked}>
-
-                <input placeholder='John Doe' value={props.employeeName} onChange={props.getInput} style={styles.input} ></input>
-                <Button buttonTitle="Search" buttonStyle={styles.button} />
+                style={styles.section}>
+                    <label>Select a country</label>
+                    <select name="lcountry" id="country" style={styles.dropdown}>
+                        <option value="">Select a country </option>
+                        <option value="au">Australia </option>
+                        <option value="br">Brazil</option>
+                        <option value="ch">Canada</option>
+                        <option value="us">United States</option>
+                    </select>
+                {/* <input placeholder='John Doe' value={props.employeeName} style={styles.input} ></input>
+                <Button buttonTitle="Search" buttonStyle={styles.button} /> */}
             </form>
-
         </div>
     )
 }
@@ -25,33 +30,43 @@ const styles = {
     container: {
         // backgroundColor: '#F0F4EFF0F4EF',
         padding: '1rem',
+        marginTop: '1rem', 
         marginBottom: '1rem',
         textAlign: 'center',
         fontSize: '2rem',
         textTransform: 'uppercase',
         color: '#85BAA1',
+        // display: 'flex', 
+        // flexDirection: 'colummn'
     },
     section: {
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         padding: '0rem',
         margin: '0rem'
     },
-    input: {
-        height: '2rem',
-        width: '40%',
-        border: 'none',
-        borderRadius: '25px',
-        paddingLeft: '1rem'
-    },
-    button: {
-        alignSelf: 'center',
-        padding: '.5rem',
-        marginLeft: '1rem',
-        borderRadius: '10px',
-        backgroundColor: '#85BAA1',
-        border: 'none',
-        // color: 'white'
+    dropdown: { 
+        fontSize: '2rem', 
+        marginTop: '1rem', 
     }
+    // input: {
+    //     height: '2rem',
+    //     width: '40%',
+    //     border: 'none',
+    //     borderRadius: '25px',
+    //     paddingLeft: '1rem'
+    // },
+    // button: {
+    //     alignSelf: 'center',
+    //     padding: '.5rem',
+    //     marginLeft: '1rem',
+    //     borderRadius: '10px',
+    //     backgroundColor: '#85BAA1',
+    //     border: 'none',
+    //     // color: 'white'
+    // }, 
+
+
 }

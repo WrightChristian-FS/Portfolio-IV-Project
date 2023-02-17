@@ -12,13 +12,16 @@ class App extends Component {
   componentDidMount() {
     const profile = this.state.isLoaded
     if (profile) {
-      this.fetchData()
+     this.fetchData()
+      // console.log(this.state.userData)
     } else {
       console.log("Did not load User data")
     }
+    console.log("this.componentDidMount") 
+
   }
 
- // Call the api
+  // Call the api
   fetchData() {
     fetch('https://randomuser.me/api/?results=20')
       .then(response => response.json())
@@ -28,59 +31,36 @@ class App extends Component {
         firstName: `${user.name.first}`,
         lastName: `${user.name.last}`,
         street: `${user.location.street.number}`,
-        streetName: `${user.location.street.name}`, 
+        streetName: `${user.location.street.name}`,
         city: `${user.location.city}`,
         state: `${user.location.state}`,
         zipCode: `${user.location.postcode}`,
         email: `${user.email}`,
         phone: `${user.cell}`,
         picture: `${user.picture.medium}`,
-      }
+      } 
       )))
       .then(userData => this.setState({
         userData,
-        isLoaded: false 
+        isLoaded: false
       }))
       .catch(err => console.log(err))
   }
 
-  getInput = e => { 
-    e.preventDefault(); 
-    console.log("TEST")
-  }
 
-  testFunct = e => { 
-    console.log("TEST")
-  }
 
   render() {
-    const { isLoaded, userData } = this.state; 
+    const { isLoaded, userData } = this.state;
 
-    let info = this.state.userData.map(user => {
-      const { userName, firstName, lastName, street, streetName, city, state, zipCode, email, phone, picture } = user;
-      return <UserData
-        key={userName}
-        picture={picture}
-        firstName={firstName}
-        lastName={lastName}
-        email={email}
-        street={street}
-        streetName={streetName}
-        city={city}
-        state={state}
-        zipCode={zipCode}
-        phone={phone}
-      />
-    }) 
-    
     return (
       <div style={styles.container}>
         <section>
-          <Navigation/>
+          <Navigation />
         </section>
         <section>
-          <Search getInput={this.getInput}/>
-        </section> 
+          <Search />
+          {/* {console.log(this.state.userData)} */}
+        </section>
         <section style={styles.section} >
           {/* Map the data that was returned from the API */}
           {!isLoaded && userData.length > 0 ? userData.map(user => {
@@ -98,9 +78,12 @@ class App extends Component {
               zipCode={zipCode}
               phone={phone}
             />
-          }) : null
+          }) : null 
           }
-        </section>
+
+{/* {console.log(this.state.userData)} */}
+
+        </section> 
       </div>
     )
   }
@@ -115,7 +98,7 @@ const styles = {
     flexDirection: 'column',
     height: '100vh',
     width: '100vw',
-    
+
   },
   section: {
     display: 'flex',
@@ -125,8 +108,8 @@ const styles = {
     height: '100%',
     width: '100vw',
     overflow: 'scroll',
-    background: '#344966', 
-    
+    background: '#344966',
+
   }
 
 }
