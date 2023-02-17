@@ -6,7 +6,7 @@ const Navigation = () =>{
         <nav style={styles.container}>
             <h1 style={styles.navHeader}>Offices</h1>
             {/* <Link to='/home' style={styles.links}>Home</Link> */}
-            <Link to='/united states' style={styles.links}>Unites States</Link>
+            <Link to='/unitedstates' style={styles.links}>Unites States</Link>
             <Link to='/brazil' style={styles.links}>Brazil</Link>
             <Link to='/canada' style={styles.links}>Canada</Link>
             <Link to='/mexico' style={styles.links}>Mexico</Link>
@@ -22,7 +22,7 @@ const styles = {
         flexDirection: 'column',
         backgroundColor: '#0D1821',
         height: '100vh', 
-        width: '15%', 
+        width: '12rem', 
     },
     links: { 
         color: 'white', 
