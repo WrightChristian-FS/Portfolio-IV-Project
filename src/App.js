@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navigation from './components/NavigationBar';
 import UserData from './components/User'
 import Search from './components/Search';
 
@@ -7,24 +6,10 @@ class App extends Component {
   state = {
     userData: [],
     isLoaded: true
-  }
+  };
 
-
-  componentDidMount() {
-    const profile = this.state.isLoaded
-    if (profile) {
-     this.fetchData()
-      // console.log(this.state.userData)
-    } else {
-      console.log("Did not load User data")
-    }
-    // console.log("this.componentDidMount") 
-  }
-
-
-
-  // Call the api
-  fetchData() {
+  // Fetch data will return generic data that does not filter the results by nationality 
+  fetchData(search) {
     fetch('https://randomuser.me/api/?results=20')
       .then(response => response.json())
       .then(responseJSON => responseJSON.results.map(user => ({
@@ -40,31 +25,76 @@ class App extends Component {
         email: `${user.email}`,
         phone: `${user.cell}`,
         picture: `${user.picture.medium}`,
-      } 
+      }
       )))
       .then(userData => this.setState({
         userData,
         isLoaded: false
       }))
       .catch(err => console.log(err))
+  };
+
+  // This function fetchNatData will return the data for a specific country 
+  fetchNatData(search) {
+
+    // Set a variable to add the prefex to call the nationality filter 
+    let requestedCountry = "nat="
+
+    fetch('https://randomuser.me/api/?' + requestedCountry + search)
+      .then(response => response.json())
+      .then(responseJSON => responseJSON.results.map(user => ({
+        // set the user data 
+        userName: `${user.login.username}`,
+        firstName: `${user.name.first}`,
+        lastName: `${user.name.last}`,
+        street: `${user.location.street.number}`,
+        streetName: `${user.location.street.name}`,
+        city: `${user.location.city}`,
+        state: `${user.location.state}`,
+        zipCode: `${user.location.postcode}`,
+        email: `${user.email}`,
+        phone: `${user.cell}`,
+        picture: `${user.picture.medium}`,
+      }
+      )))
+      .then(userData => this.setState({
+        userData,
+        isLoaded: false
+      }))
+      .catch(err => console.log(err))
+  };
+
+  // Confirm that the component did mount => Create a if statement to decide if the API should return generic data or country specific data 
+  componentDidMount(search) {
+
+    // If the user input does not equal 2 characters, then request the API for generic data 
+    if (String(search).length != 2) {
+      this.fetchData(search)
+    } else {
+      // If the input has 2 charcaters then request a country specific user.
+      this.fetchNatData(search)
+    }
+
   }
 
-
-
   render() {
+    // Set the state 
     const { isLoaded, userData } = this.state;
+
+    // This function will take the input and pass it to the component Did mount for the completeion of the API fetch data 
+    const SearchUser = (search) => {
+
+      this.componentDidMount(search);
+    }
 
     return (
       <div style={styles.container}>
+   
         <section>
-          <Navigation />
-        </section>
-        <section>
-          <Search />
-          {/* {console.log(this.state.userData)} */}
+          <Search onCreate={SearchUser} />
         </section>
         <section style={styles.section} >
-          {/* Map the data that was returned from the API */}
+          {/* Map the user data returned from the API */}
           {!isLoaded && userData.length > 0 ? userData.map(user => {
             const { userName, firstName, lastName, street, streetName, city, state, zipCode, email, phone, picture } = user;
             return <UserData
@@ -80,12 +110,9 @@ class App extends Component {
               zipCode={zipCode}
               phone={phone}
             />
-          }) : null 
+          }) : null
           }
-
-{/* {console.log(this.state.userData)} */}
-
-        </section> 
+        </section>
       </div>
     )
   }
@@ -95,7 +122,7 @@ export default App;
 
 const styles = {
   container: {
-    backgroundColor: '#344966',
+    backgroundColor: '#29335C',
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
@@ -110,7 +137,7 @@ const styles = {
     height: '100%',
     width: '100vw',
     overflow: 'scroll',
-    background: '#344966',
+    background: '#29335C',
 
   }
 
