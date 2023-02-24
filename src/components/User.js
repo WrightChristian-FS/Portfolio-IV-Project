@@ -27,7 +27,7 @@ export default UserData
 
 const styles = { 
     card: { 
-        backgroundColor: '#498467', 
+        backgroundColor: '#D0D6B5', 
         padding: '1.5rem',
         marginLeft: '2rem',
         marginTop: '2rem',
@@ -35,10 +35,13 @@ const styles = {
         minWidth: '15%', 
         // height: '40%', 
         borderRadius: '5px',
-        // boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;", 
+        // boxShadow: "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;", \
     }, 
     picture: { 
-
+        display: 'flex', 
+        height: '10rem', 
+        marginLeft: 'auto', 
+        marginRight: 'auto'
     }
          
         
